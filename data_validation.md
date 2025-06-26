@@ -8,18 +8,42 @@ classinfo: A type (like int, str, list, etc.), a custom class, or even a tuple o
 isinstance(5, int)                # True
 isinstance("Hi", str)             # True
 isinstance([1,2,3], (list, tuple))# True for either type
+class Animal: pass
+class Dog(Animal): pass
 
+dog = Dog()
+isinstance(dog, Dog)    # True
+isinstance(dog, Animal) # True — checks subclass too :contentReference[oaicite:7]{index=7}
+
+**Error**
+ZeroDivisionError – dividing by zero
+
+NameError – referring to an undefined variable
+
+TypeError – using incorrect types (e.g., '2' + 2)
+
+ValueError – correct type but invalid value (e.g., int('abc'))
+
+IndexError – accessing out-of-range index
+
+KeyError – accessing missing dictionary key
+
+AttributeError – accessing a non-existent attribute
+
+ImportError/ModuleNotFoundError – import issues
+
+FileNotFoundError, MemoryError, StopIteration, RuntimeError, RecursionError, etc.
 
 **Key Error**
 If you’re writing a function where a missing key signifies invalid input or corrupted data, it's fine to do:
 if 'name' not in data:
     raise KeyError("'name' is required")
 
-    # Ensure date is datetime
-    if date_column not in df_month.columns:
-        raise KeyError(f"Date column '{date_column}' not found.")
-    if not pd.api.types.is_datetime64_any_dtype(df_month[date_column]):
-        df_month[date_column] = pd.to_datetime(df_month[date_column])
+# Ensure date is datetime
+if date_column not in df_month.columns:
+    raise KeyError(f"Date column '{date_column}' not found.")
+if not pd.api.types.is_datetime64_any_dtype(df_month[date_column]):
+    df_month[date_column] = pd.to_datetime(df_month[date_column])
 
   **Value Error**
 A ValueError in Python is raised when a function or operation receives an argument of the correct type, but the value itself is invalid or inappropriate for that operation
@@ -32,6 +56,57 @@ def calculate_area(length, width):
 
 
 **try & exception**
+except Exception as e:
+    # handle error...
+…it means you're catching all exceptions that inherit from the base Exception class (which includes most runtime errors) and storing the error inside the variable e. You can then use **str(e) or e.args** to read the specific error message
+
+try block runs your code.
+
+If any Exception (or subclass) is raised, control jumps to the except block.
+
+The exception instance is assigned to e.
+
+result = 10 / 0
+except Exception as e:
+    print(f"Error occurred: {e}")
+    # e is a ZeroDivisionError: "division by zero"
+
+except (ZeroDivisionError, ValueError) as e:
+    # handle known errors
+Catch broad only when needed, e.g., in top-level loops to prevent crashing, but always log and re-raise if necessary .
+
+If using except Exception as e, log the full stack trace:
+
+import logging
+logging.exception("Something went wrong")
+This provides context for debugging
+
+except Exception as e: catches most runtime errors and gives you access to the error message.
+⚠️ Avoid overusing it — catching only what you expect is safer and makes maintenance easier.
+When used, log properly, handle cleanup, and optionally re-raise to preserve tracebacks.
+Let me know if you'd like examples for data processing, network calls, or any other scenario!
+
+try:
+    ...
+except Exception as e:
+    handle_error(e)
+    
+def handle_error(e):
+    logger.error("Error occurred", exc_info=e)
+    cleanup()
+    # maybe re-raise or set fallback values
+
+BaseException
+ ├─ GeneratorExit
+ ├─ KeyboardInterrupt
+ ├─ SystemExit
+ └─ Exception
+      ├─ ArithmeticError (ZeroDivisionError, OverflowError…)
+      ├─ LookupError (IndexError, KeyError…)
+      ├─ ValueError, TypeError, OSError, etc.
+
+Use Exception for most error handling (covers typical runtime errors).
+BaseException includes critical exceptions like KeyboardInterrupt and SystemExit that you usually don’t want to catch, unless you have a very specific reason.
 
 except Exception as e:
     # If an error occurs, capture the error message and set forecast to NaN
