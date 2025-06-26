@@ -33,16 +33,54 @@ def calculate_area(length, width):
 
 **try & exception**
 
-        except Exception as e:
-            # If an error occurs, capture the error message and set forecast to NaN
-            error_str = f"{df[base_vars['key']].unique()[0]} Exception: {str(e)}"
-            dff['run_status_' + model_name] = error_str
-            dff['forecast'] = np.nan
 except Exception as e:
     # If an error occurs, capture the error message and set forecast to NaN
     error_str = f"{df[base_vars['key']].unique()[0]} Exception: {str(e)}"
     dff['run_status_' + model_name] = error_str
     dff['forecast'] = np.nan
+
+**logging**
+***System arguments***
+if __name__ == '__main__':
+    args = json.loads(sys.argv[1]) 
+    project_id = args[""] 
+    bq_dataset = args[""] 
+    ds_temp_bucket = args[""]
+    source_dataset = args[""]
+
+
+***Get or Create the Logger***
+
+logging.getLogger('py4j'): Creates or retrieves a logger named 'py4j'.
+2)Set Logging Level:
+  logger.setLevel(logging.INFO): Configures the logger to handle messages at the INFO level and above (INFO, WARNING, ERROR, CRITICAL).
+
+3)Create a Console Handler:
+  ch = logging.StreamHandler(): Creates a handler that outputs log messages to the console.
+  ch.setLevel(logging.INFO): Sets the console handler to only process messages at the INFO level or above.
+
+4)Create a Formatter:
+  logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'): Specifies the format for log messages, including:
+  %(asctime)s: Timestamp of the log entry.
+  %(name)s: Name of the logger ('py4j' in this case).
+  %(levelname)s: Log level (INFO, ERROR, etc.).
+  %(message)s: The actual log message.
+  Attach Formatter to the Handler:
+
+5)ch.setFormatter(formatter): Adds the formatter to the console handler.
+6)Add Handler to the Logger:
+  logger.addHandler(ch): Adds the console handler to the logger, enabling the formatted log messages to be displayed on the console.
+
+Input code
+  logger.info("This is an info message.")
+  logger.warning("This is a warning message.")
+  logger.error("This is an error message.")
+
+
+Output code
+2024-12-24 12:00:00 - py4j - INFO - This is an info message.
+2024-12-24 12:00:01 - py4j - WARNING - This is a warning message.
+2024-12-24 12:00:02 - py4j - ERROR - This is an error message.
 
 **handle inf values**
 
