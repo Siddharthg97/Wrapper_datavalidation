@@ -1,7 +1,10 @@
 ## Data Validation checks are to performed in 
-
+1) **check data type**
 **isinstance(object, classinfo)**
-  ,
+
+2)  **if values/columns is already created then avoid re-creating that**
+   
+
 object: Any value or variable you want to examine.
 classinfo: A type (like int, str, list, etc.), a custom class, or even a tuple of types.
   
