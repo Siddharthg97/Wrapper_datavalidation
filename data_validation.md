@@ -58,18 +58,14 @@ def calculate_area(length, width):
 **run time error**
 
 
-**try & exception**
+## try & exception
 except Exception as e:
-    # handle error...
-…it means you're catching all exceptions that inherit from the base Exception class (which includes most runtime errors)
+
+it means you're catching all exceptions that inherit from the base Exception class (which includes most runtime errors)
 and storing the error inside the variable e. You can then use **str(e) or e.args** to read the specific error message
 
-try block runs your code.
-
-If any Exception (or subclass) is raised, control jumps to the except block.
-
 The exception instance is assigned to e.
-
+1)**approach**
 result = 10 / 0
 except Exception as e:
     print(f"Error occurred: {e}")
@@ -89,7 +85,7 @@ except Exception as e: catches most runtime errors and gives you access to the e
 ⚠️ Avoid overusing it — catching only what you expect is safer and makes maintenance easier.
 When used, log properly, handle cleanup, and optionally re-raise to preserve tracebacks.
 Let me know if you'd like examples for data processing, network calls, or any other scenario!
-
+2)**approach**
 try:
     ...
 except Exception as e:
