@@ -61,7 +61,8 @@ def calculate_area(length, width):
 **try & exception**
 except Exception as e:
     # handle error...
-…it means you're catching all exceptions that inherit from the base Exception class (which includes most runtime errors) and storing the error inside the variable e. You can then use **str(e) or e.args** to read the specific error message
+…it means you're catching all exceptions that inherit from the base Exception class (which includes most runtime errors)
+and storing the error inside the variable e. You can then use **str(e) or e.args** to read the specific error message
 
 try block runs your code.
 
@@ -109,7 +110,8 @@ BaseException
       ├─ ValueError, TypeError, OSError, etc.
 
 Use Exception for most error handling (covers typical runtime errors).
-BaseException includes critical exceptions like KeyboardInterrupt and SystemExit that you usually don’t want to catch, unless you have a very specific reason.
+BaseException includes critical exceptions like KeyboardInterrupt and SystemExit that you usually don’t 
+want to catch, unless you have a very specific reason.
 
 except Exception as e:
     # If an error occurs, capture the error message and set forecast to NaN
@@ -131,7 +133,8 @@ if __name__ == '__main__':
 
 logging.getLogger('py4j'): Creates or retrieves a logger named 'py4j'.
 2)Set Logging Level:
-  logger.setLevel(logging.INFO): Configures the logger to handle messages at the INFO level and above (INFO, WARNING, ERROR, CRITICAL).
+  logger.setLevel(logging.INFO): Configures the logger to handle messages at the INFO level and above 
+  (INFO, WARNING, ERROR, CRITICAL).
 
 3)Create a Console Handler:
   ch = logging.StreamHandler(): Creates a handler that outputs log messages to the console.
@@ -147,7 +150,8 @@ logging.getLogger('py4j'): Creates or retrieves a logger named 'py4j'.
 
 5)ch.setFormatter(formatter): Adds the formatter to the console handler.
 6)Add Handler to the Logger:
-  logger.addHandler(ch): Adds the console handler to the logger, enabling the formatted log messages to be displayed on the console.
+  logger.addHandler(ch): Adds the console handler to the logger, enabling the formatted log messages to be
+  displayed on the console.
 
 Input code
   logger.info("This is an info message.")
