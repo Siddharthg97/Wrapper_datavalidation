@@ -86,6 +86,8 @@ except Exception as e: catches most runtime errors and gives you access to the e
 When used, log properly, handle cleanup, and optionally re-raise to preserve tracebacks.
 Let me know if you'd like examples for data processing, network calls, or any other scenario!
 2)**approach**
+
+logger = logging.getLogger(__name__)
 try:
     ...
 except Exception as e:
